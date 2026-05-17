@@ -256,6 +256,49 @@ h1 em{font-style:italic;color:var(--gold)}
   100%{transform:translate(-50%,-50%) scale(1);opacity:0}
 }
 
+/* Human Life Counter — deep void */
+.sec-lifecounter .fw-bg{
+  background:linear-gradient(145deg,#010a06 0%,#001a0d 40%,#00120a 70%,#010a06 100%);
+}
+.sec-lifecounter .fw-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 55% 45% at 75% 45%, rgba(0,255,180,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 55% at 25% 55%, rgba(0,255,180,0.04) 0%, transparent 70%);
+  animation:lc-glow-pulse 6s ease-in-out infinite alternate;
+}
+@keyframes lc-glow-pulse{
+  from{opacity:0.6} to{opacity:1.1}
+}
+.life-art{
+  position:absolute;inset:0;z-index:0;
+  opacity:0.35;
+  pointer-events:none;
+}
+.lc-dot{
+  animation:lc-float 4s ease-in-out infinite alternate;
+}
+.lc-dot:nth-child(odd){animation-duration:3.5s}
+.lc-dot:nth-child(3n){animation-duration:5s}
+@keyframes lc-float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-8px)}
+}
+.lc-ring{
+  animation:lc-expand 4s ease-out infinite;
+}
+.lc-ring:nth-child(2){animation-delay:1.5s}
+.lc-ring:nth-child(3){animation-delay:3s}
+@keyframes lc-expand{
+  0%{transform:scale(0.9);opacity:0.4}
+  100%{transform:scale(1.15);opacity:0}
+}
+.lc-glow{
+  position:absolute;bottom:0;left:0;right:0;height:60%;
+  background:linear-gradient(0deg,rgba(0,20,12,0.7) 0%,transparent 100%);
+  z-index:1;pointer-events:none;
+}
+
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--line);
@@ -359,7 +402,7 @@ footer{
   </a>
 
   <!-- Baby Map -->
-  <a class="fw-section sec-babymap" href="https://matteorossato.github.io/baby_map" target="_blank" rel="noopener">
+  <a class="fw-section sec-babymap" href="./baby-map/index.html" target="_blank" rel="noopener">
     <!-- map artwork -->
     <div class="fw-bg">
       <svg class="map-art" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -425,6 +468,55 @@ footer{
         <p class="fw-num">03 &mdash; Live Project</p>
         <h2 class="fw-title">World <em>Birth</em><br>Map — Live</h2>
         <p class="fw-desc">A real-time visualisation of births happening around the world — 385,000 every day, 4.5 every second. Built with D3.js and Natural Earth geodata.</p>
+      </div>
+      <span class="fw-arrow">Open project &nbsp;&rarr;</span>
+    </div>
+  </a>
+
+  <!-- Human Life Counter -->
+  <a class="fw-section sec-lifecounter" href="./human-life-counter/index.html" target="_blank" rel="noopener">
+    <!-- animated particle canvas background -->
+    <div class="fw-bg">
+      <svg class="life-art" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- grid lines -->
+        <line x1="0" y1="125" x2="1000" y2="125" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="0" y1="375" x2="1000" y2="375" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="125" y1="0" x2="125" y2="500" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="250" y1="0" x2="250" y2="500" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="375" y1="0" x2="375" y2="500" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="500" y1="0" x2="500" y2="500" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="625" y1="0" x2="625" y2="500" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="750" y1="0" x2="750" y2="500" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <line x1="875" y1="0" x2="875" y2="500" stroke="rgba(0,255,180,0.08)" stroke-width="0.5"/>
+        <!-- floating counter dots -->
+        <circle class="lc-dot" cx="120" cy="180" r="2" fill="rgba(0,255,180,0.6)"/>
+        <circle class="lc-dot" cx="340" cy="120" r="1.5" fill="rgba(0,255,180,0.4)"/>
+        <circle class="lc-dot" cx="560" cy="200" r="2.5" fill="rgba(0,255,180,0.5)"/>
+        <circle class="lc-dot" cx="720" cy="150" r="1.5" fill="rgba(0,255,180,0.3)"/>
+        <circle class="lc-dot" cx="880" cy="210" r="2" fill="rgba(0,255,180,0.6)"/>
+        <circle class="lc-dot" cx="200" cy="300" r="1.5" fill="rgba(0,255,180,0.4)"/>
+        <circle class="lc-dot" cx="450" cy="320" r="2" fill="rgba(0,255,180,0.5)"/>
+        <circle class="lc-dot" cx="650" cy="280" r="1.5" fill="rgba(0,255,180,0.3)"/>
+        <circle class="lc-dot" cx="810" cy="340" r="2.5" fill="rgba(0,255,180,0.5)"/>
+        <!-- pulsing rings -->
+        <circle class="lc-ring" cx="300" cy="240" r="40" fill="none" stroke="rgba(0,255,180,0.15)" stroke-width="1"/>
+        <circle class="lc-ring" cx="700" cy="200" r="60" fill="none" stroke="rgba(0,255,180,0.10)" stroke-width="1"/>
+        <circle class="lc-ring" cx="500" cy="300" r="50" fill="none" stroke="rgba(0,255,180,0.12)" stroke-width="1"/>
+        <!-- counter label pill -->
+        <rect x="60" y="60" width="160" height="28" rx="4" fill="rgba(0,255,180,0.06)" stroke="rgba(0,255,180,0.2)" stroke-width="0.5"/>
+        <text x="140" y="79" fill="rgba(0,255,180,0.5)" font-family="'Geist Mono','Courier New',monospace" font-size="10" text-anchor="middle" letter-spacing="2">LIVE · GLOBAL</text>
+        <rect x="240" y="90" width="140" height="24" rx="4" fill="rgba(0,255,180,0.04)" stroke="rgba(0,255,180,0.15)" stroke-width="0.5"/>
+        <text x="310" y="106" fill="rgba(0,255,180,0.4)" font-family="'Geist Mono','Courier New',monospace" font-size="9" text-anchor="middle" letter-spacing="1">BIRTHS · CO₂ · ENERGY</text>
+      </svg>
+      <!-- glow overlay -->
+      <div class="lc-glow"></div>
+    </div>
+    <div class="fw-content">
+      <div class="fw-left">
+        <p class="fw-num">04 &mdash; Live Project</p>
+        <h2 class="fw-title">Human <em>Life</em><br>Counter &mdash; Live</h2>
+        <p class="fw-desc">A zero-dependency real-time dashboard tracking 12 global metrics — births, deaths, CO₂, energy, social media and more. Every second, the world changes: watch it happen.</p>
       </div>
       <span class="fw-arrow">Open project &nbsp;&rarr;</span>
     </div>
