@@ -299,6 +299,57 @@ h1 em{font-style:italic;color:var(--gold)}
   z-index:1;pointer-events:none;
 }
 
+/* ── THEREMIN VISUAL ── */
+.sec-theremin .fw-bg{
+  background:linear-gradient(145deg,#03020a 0%,#0d0520 40%,#120830 70%,#03020a 100%);
+}
+.sec-theremin .fw-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 68% 48%, rgba(176,122,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 30% 55%, rgba(112,64,204,0.07) 0%, transparent 70%);
+  animation:theremin-glow 5s ease-in-out infinite alternate;
+}
+@keyframes theremin-glow{
+  from{opacity:0.6} to{opacity:1.2}
+}
+.theremin-art{
+  position:absolute;inset:0;z-index:0;
+  opacity:0.35;
+  pointer-events:none;
+}
+.th-particle{
+  animation:th-float 4s ease-in-out infinite alternate;
+}
+.th-particle:nth-child(odd){animation-duration:3.2s}
+.th-particle:nth-child(3n){animation-duration:5.5s}
+@keyframes th-float{
+  from{transform:translateY(0) scale(1);opacity:0.7}
+  to{transform:translateY(-12px) scale(1.2);opacity:0.3}
+}
+.th-ring{
+  animation:th-ring-expand 4s ease-out infinite;
+  transform-origin: center;
+}
+.th-ring:nth-child(2){animation-delay:1.3s}
+.th-ring:nth-child(3){animation-delay:2.6s}
+@keyframes th-ring-expand{
+  0%{transform:scale(0.85);opacity:0.5}
+  100%{transform:scale(1.2);opacity:0}
+}
+.th-hand{
+  animation:th-hand-float 3s ease-in-out infinite;
+}
+@keyframes th-hand-float{
+  0%,100%{transform:translateY(0px)}
+  50%{transform:translateY(-18px)}
+}
+.th-glow{
+  position:absolute;bottom:0;left:0;right:0;height:55%;
+  background:linear-gradient(0deg,rgba(3,2,10,0.75) 0%,transparent 100%);
+  z-index:1;pointer-events:none;
+}
+
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--line);
@@ -517,6 +568,98 @@ footer{
         <p class="fw-num">04 &mdash; Live Project</p>
         <h2 class="fw-title">Human <em>Life</em><br>Counter &mdash; Live</h2>
         <p class="fw-desc">A zero-dependency real-time dashboard tracking 12 global metrics — births, deaths, CO₂, energy, social media and more. Every second, the world changes: watch it happen.</p>
+      </div>
+      <span class="fw-arrow">Open project &nbsp;&rarr;</span>
+    </div>
+  </a>
+
+
+  <!-- Theremin Visual -->
+  <a class="fw-section sec-theremin" href="./theremin-visual/index.html" target="_blank" rel="noopener">
+    <div class="fw-bg">
+      <svg class="theremin-art" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- grid lines -->
+        <line x1="0" y1="100" x2="1000" y2="100" stroke="rgba(176,122,255,0.07)" stroke-width="0.5"/>
+        <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(176,122,255,0.07)" stroke-width="0.5"/>
+        <line x1="0" y1="400" x2="1000" y2="400" stroke="rgba(176,122,255,0.07)" stroke-width="0.5"/>
+        <line x1="200" y1="0" x2="200" y2="500" stroke="rgba(176,122,255,0.07)" stroke-width="0.5"/>
+        <line x1="500" y1="0" x2="500" y2="500" stroke="rgba(176,122,255,0.07)" stroke-width="0.5"/>
+        <line x1="800" y1="0" x2="800" y2="500" stroke="rgba(176,122,255,0.07)" stroke-width="0.5"/>
+
+        <!-- defs: radial gradient for particles -->
+        <defs>
+          <radialGradient id="pg1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(176,122,255,0.9)"/>
+            <stop offset="100%" stop-color="rgba(176,122,255,0)"/>
+          </radialGradient>
+          <radialGradient id="pg2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,140,80,0.85)"/>
+            <stop offset="100%" stop-color="rgba(255,140,80,0)"/>
+          </radialGradient>
+          <radialGradient id="pg3" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(120,80,220,0.8)"/>
+            <stop offset="100%" stop-color="rgba(120,80,220,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Pulsing rings around hand center -->
+        <circle class="th-ring" cx="640" cy="220" r="55" fill="none" stroke="rgba(176,122,255,0.35)" stroke-width="1.2"/>
+        <circle class="th-ring" cx="640" cy="220" r="85" fill="none" stroke="rgba(176,122,255,0.22)" stroke-width="1"/>
+        <circle class="th-ring" cx="640" cy="220" r="115" fill="none" stroke="rgba(176,122,255,0.12)" stroke-width="0.8"/>
+
+        <!-- Particle nebula -->
+        <circle class="th-particle" cx="580" cy="190" r="5" fill="url(#pg3)" opacity="0.7"/>
+        <circle class="th-particle" cx="610" cy="155" r="3.5" fill="url(#pg1)" opacity="0.6"/>
+        <circle class="th-particle" cx="660" cy="170" r="4" fill="url(#pg2)" opacity="0.55"/>
+        <circle class="th-particle" cx="700" cy="200" r="3" fill="url(#pg1)" opacity="0.5"/>
+        <circle class="th-particle" cx="720" cy="250" r="4.5" fill="url(#pg3)" opacity="0.6"/>
+        <circle class="th-particle" cx="690" cy="280" r="3" fill="url(#pg2)" opacity="0.5"/>
+        <circle class="th-particle" cx="640" cy="290" r="5" fill="url(#pg1)" opacity="0.65"/>
+        <circle class="th-particle" cx="590" cy="265" r="3.5" fill="url(#pg3)" opacity="0.55"/>
+        <circle class="th-particle" cx="555" cy="230" r="4" fill="url(#pg2)" opacity="0.5"/>
+        <circle class="th-particle" cx="540" cy="180" r="3" fill="url(#pg1)" opacity="0.45"/>
+        <circle class="th-particle" cx="630" cy="130" r="3" fill="url(#pg2)" opacity="0.4"/>
+        <circle class="th-particle" cx="750" cy="170" r="2.5" fill="url(#pg1)" opacity="0.35"/>
+
+        <!-- Floating hand silhouette -->
+        <g class="th-hand" transform="translate(585,130)">
+          <defs>
+            <linearGradient id="hg2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#b07aff" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#7040cc" stop-opacity="0.25"/>
+            </linearGradient>
+          </defs>
+          <!-- palm -->
+          <rect x="15" y="50" width="52" height="45" rx="12" fill="url(#hg2)" opacity="0.8"/>
+          <!-- thumb -->
+          <rect x="2" y="58" width="15" height="30" rx="7" fill="url(#hg2)" opacity="0.8"/>
+          <!-- index -->
+          <rect x="17" y="16" width="13" height="40" rx="6" fill="url(#hg2)" opacity="0.8"/>
+          <!-- middle -->
+          <rect x="34" y="8" width="13" height="46" rx="6" fill="url(#hg2)" opacity="0.8"/>
+          <!-- ring -->
+          <rect x="51" y="16" width="13" height="40" rx="6" fill="url(#hg2)" opacity="0.8"/>
+          <!-- pinky -->
+          <rect x="66" y="28" width="11" height="32" rx="5" fill="url(#hg2)" opacity="0.8"/>
+        </g>
+
+        <!-- Frequency axis label -->
+        <rect x="60" y="55" width="180" height="26" rx="4" fill="rgba(176,122,255,0.06)" stroke="rgba(176,122,255,0.22)" stroke-width="0.5"/>
+        <text x="150" y="73" fill="rgba(176,122,255,0.5)" font-family="'Geist Mono','Courier New',monospace" font-size="10" text-anchor="middle" letter-spacing="2">HAND · SOUND · LIGHT</text>
+        <rect x="60" y="88" width="150" height="22" rx="4" fill="rgba(176,122,255,0.04)" stroke="rgba(176,122,255,0.14)" stroke-width="0.5"/>
+        <text x="135" y="104" fill="rgba(176,122,255,0.38)" font-family="'Geist Mono','Courier New',monospace" font-size="9" text-anchor="middle" letter-spacing="1">PENTATONIC · WEBCAM</text>
+
+        <!-- pentatonic wave suggestion -->
+        <polyline points="50,360 120,320 190,340 260,300 330,325 400,290 470,310 540,280 610,295 680,260 750,278 820,250 900,265 970,240"
+          fill="none" stroke="rgba(176,122,255,0.18)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      </svg>
+      <div class="th-glow"></div>
+    </div>
+    <div class="fw-content">
+      <div class="fw-left">
+        <p class="fw-num">05 &mdash; Live Project</p>
+        <h2 class="fw-title">Visual <em>Theremin</em><br>&mdash; Webcam</h2>
+        <p class="fw-desc">A browser-based musical instrument: no clicks, no touch — just your hand floating in front of the camera. Built with MediaPipe, Tone.js and Canvas 2D.</p>
       </div>
       <span class="fw-arrow">Open project &nbsp;&rarr;</span>
     </div>
